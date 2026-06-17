@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  hermes:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hermes-agent
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - LOG_LEVEL=INFO
+      # Add your environment variables here
+      # - API_KEY=${API_KEY}
+      # - MODEL_NAME=${MODEL_NAME}
+    volumes:
+      # Mount local directory for development
+      - .:/app
+      # Persist data
+      - hermes-data:/app/data
+    restart: unless-stopped
+    networks:
+      - hermes-network
+
+  # Optional: Add a database service if needed
+  # postgres:
+  #   image: postgres:15-alpine
+  #   container_name: hermes-db
+  #   environment:
+  #     POSTGRES_DB: hermes_db
+  #     POSTGRES_USER: ${DB_USER:-hermes}
+  #     POSTGRES_PASSWORD: ${DB_PASSWORD:-hermes_password}
+  #   volumes:
+  #     - postgres-data:/var/lib/postgresql/data
+  #   networks:
+  #     - hermes-network
+
+volumes:
+  hermes-data:
+  # postgres-data:
+
+networks:
+  hermes-network:
+    driver: bridge
