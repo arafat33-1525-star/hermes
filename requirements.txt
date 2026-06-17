@@ -1,18 +1,5 @@
-# Core dependencies for Hermes Agent
-# Add your actual requirements here
-
-# Agent framework
-# hermes-agent>=1.0.0
-
-# Common Python dependencies
+fastapi>=0.104.0
+uvicorn>=0.24.0
 python-dotenv>=1.0.0
 requests>=2.31.0
 pydantic>=2.0.0
-fastapi>=0.104.0
-uvicorn>=0.24.0
-
-# Development dependencies (comment out for production)
-# pytest>=7.4.0
-# pytest-cov>=4.1.0
-# black>=23.0.0
-# flake8>=6.1.0
